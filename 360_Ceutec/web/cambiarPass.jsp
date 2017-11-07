@@ -20,7 +20,8 @@
                 
                 if (request.getParameter("pass1").equals(session.getAttribute("session_pass"))) {
                         if (request.getParameter("pass2").equals(request.getParameter("pass3"))) {
-                                int contador = db.query.executeUpdate("UPDATE Usuario SET Password = " + request.getParameter("pass3") + " WHERE Id_Usuario = " + session.getAttribute("session_usuario") + "; ");
+                                int contador = db.query.executeUpdate("UPDATE Usuario SET Password = " + request.getParameter("pass3") + ", Estado = 1 WHERE Id_Usuario = " + session.getAttribute("session_usuario") + "; ");
+                                
                                 if (contador == 1) {
 
                                     JOptionPane.showMessageDialog(null, "Se a cambiado la contraseña exitosamente");
