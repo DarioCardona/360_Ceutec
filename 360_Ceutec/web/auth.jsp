@@ -52,15 +52,17 @@
                      if (estado == false) {
                        request.getRequestDispatcher("index2.jsp").forward(request, response); 
                     } 
-                   /* if (territory == 1) {
-                        request.getRequestDispatcher("t1.jsp").forward(request, response);
-                    } else if (territory == 2) {
+                    if (userType == 0) {
+                        request.getRequestDispatcher("CreateSU.jsp").forward(request, response);
+                    } else if (userType == 1) {
                         request.getRequestDispatcher("t2.jsp").forward(request, response);
-                    } else if (territory == 3) {
+                    } else if (userType == 2) {
                         request.getRequestDispatcher("t3.jsp").forward(request, response);
-                    } else {
+                    } else  if (userType == 3) {
+                        request.getRequestDispatcher("tablaUsuario.jsp").forward(request, response);
+                    } else{
                         out.print("<script>alert('Tipo de usuario invalido')</script>");
-                    }*/
+                    }
                 } else {
                     //out.print("<script>alert('No se encuentra el usuario')</script>");
                     JOptionPane.showMessageDialog(null, "No se encuentra el usuario" );

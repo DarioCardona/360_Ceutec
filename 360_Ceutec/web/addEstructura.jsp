@@ -140,7 +140,8 @@
                     //out.print("<script>alert('A occurido un error ');</script>");
                     JOptionPane.showMessageDialog(null,"Ha occurido un error"+error);
                 }
-            // request.getRequestDispatcher("addRegister.jsp").forward(request, response);    
+            // request.getRequestDispatcher("addRegister.jsp").forward(request, response); 
+            request.getRequestDispatcher("createSU.jsp").forward(request, response);
 
         %>    
     </body>

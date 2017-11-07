@@ -62,6 +62,7 @@
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Carrera')">Carrera</button>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Universidad')">Universidad</button>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Formato')">Formato</button>
+                <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Registros')">Registros</button>
 
             </div>
 
@@ -157,6 +158,23 @@
                         </div>
                         <br>
                         <input class="btnred" type="submit" value="Crear Universidad"/>
+                    </form>
+                    <div class="container-extra"><br><br></div>
+                </div>
+                           
+                <div id="Registros" class="tabcontent myform2 centered tab-pane   tab-content">
+                    <div class="container-extra"><br><br></div>
+                    <form id="regis" action = "addRegistros.jsp" >
+                        <h3>Agregar Registros</h3>
+                        <div class="space"></div>
+                        <div>
+                            <center>
+                            <input type="file" id="archivo" name="archivo" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv">
+                            </center>
+                            <input type="hidden" id="path" name="path" >
+                        </div>
+                        <br>
+                         <button type="button" class="btnred" onclick="validar_archivo()"/>Agregar</button>
                     </form>
                     <div class="container-extra"><br><br></div>
                 </div>
@@ -296,6 +314,16 @@
                 evt.currentTarget.className += "active";
             }
 
+            function validar_archivo(){
+                
+                if (document.getElementById("archivo").value != null && document.getElementById("archivo").value !="") {
+                    document.getElementById("path").value = document.getElementById("archivo").value;
+                    alert(document.getElementById("path").value)
+                    document.forms["regis"].submit();
+                } else {
+                    alert ("Seleccione un archivo por favor");
+                }
+            }
 
             function search_b() {
                 var input, filter, table, tr, td, i;

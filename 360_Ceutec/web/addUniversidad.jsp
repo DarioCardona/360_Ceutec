@@ -38,7 +38,8 @@
                   
                     JOptionPane.showMessageDialog(null,"Ha occurido un error");
                 }
-            request.getRequestDispatcher("create.jsp").forward(request, response);
+            //request.getRequestDispatcher("create.jsp").forward(request, response);
+            request.getRequestDispatcher("createSU.jsp").forward(request, response);
         %>
         
     </body>
