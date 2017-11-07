@@ -1,9 +1,8 @@
 <%-- 
-    Document   : addCarrera
-    Created on : 11-05-2017, 08:32:42 AM
+    Document   : addUsuario
+    Created on : 11-06-2017, 03:17:26 PM
     Author     : Darío Cardona
 --%>
-
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="DB.DatabaseConnection"%>
@@ -21,19 +20,19 @@
                 DatabaseConnection db = new DatabaseConnection(application.getRealPath(""));
                 db.connect();
 
-                
-                    String insert = request.getParameter("carrera");
+                    
+                   request.getParameter("password");
                     String insert2 ="";
-                    db.query.execute("SELECT Id_Universidad   " 
-                    + "FROM  Universidad WHERE Nombre ='"+request.getParameter("user_study")+"';");
+                    db.query.execute("SELECT Id_Carrera   " 
+                    + "FROM  Carrera WHERE Nombre ='"+request.getParameter("user_study")+"';");
                     ResultSet rs1 = db.query.getResultSet();
                     while(rs1.next()){
                        insert2 = rs1.getString(1);
                     }
-                   if (request.getParameter("carrera") != null && insert2 != "") {
-                    contador = db.query.executeUpdate("INSERT INTO Carrera (Password,Rol,Id_Universidad) VALUES ('" + insert + "',"+insert2+" );");
+                   if (request.getParameter("password") != null && insert2 != "" && request.getParameter("username")!= null ) {
+                    contador = db.query.executeUpdate("INSERT INTO Usuario (Id_Usuario,Password,Rol,Id_Carrera) VALUES ("+ request.getParameter("username")+",'" + request.getParameter("password") + "',"+ request.getParameter("tipo_roll")+","+insert2+" );");
 
-                    }
+                    } 
 
                 db.commit();
                 db.disconnect();
@@ -42,7 +41,7 @@
             }
             if (contador == 1) {
 
-                JOptionPane.showMessageDialog(null, "Área ingresado exitosamente");
+                JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
             } else {
 
                 JOptionPane.showMessageDialog(null, "Ha occurido un error");

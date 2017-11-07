@@ -23,7 +23,7 @@
             <div class="container-extra"></div>
             <img src="ceutec.jpg" width="300px">
             <h1>Iniciar sesión</h1>
-            <label class="lb" for="user">Nombre de usuario</label>
+            <label class="lb" for="user">TH de usuario</label>
             <br>
             <input type="text" name="user" id="user"/>
             <br>

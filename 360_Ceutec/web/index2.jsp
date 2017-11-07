@@ -19,7 +19,7 @@
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body class="redbg">
-        <form class="myform centered" action="auth.jsp" method="POST">
+        <form class="myform centered" action="cambiarPass.jsp" method="POST">
             
             <img src="ceutec.jpg" width="300px">
             <h1>Cambiar Contraseña</h1>

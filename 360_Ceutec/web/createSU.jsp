@@ -47,6 +47,10 @@
             db.query.execute("SELECT Nombre   " // para el filtro de vendor
                     + "FROM  Universidad ");
             ResultSet rs1 = db.query.getResultSet();
+            
+            db.query.execute("SELECT Nombre   " // para el filtro de vendor
+                    + "FROM  Carrera ");
+            ResultSet rs2 = db.query.getResultSet();
         %>
         <div>
 
@@ -68,12 +72,12 @@
 
                 <div id="Usuario" class="myform2 tabcontent centered tab-pane  tab-content"> 
                     <div class="container-extra"></div>
-                    <form action = "addUser.jsp">
+                    <form action = "addUsuario.jsp">
                         <h3>Crear Usuario</h3>
                         <br>
                         <div class="space"></div>
                         <div>
-                            <label for="username">Nombre de usuario</label>
+                            <label for="username">TH de usuario</label>
                             <br>
                             <input type="text" name="username">
                         </div>
@@ -88,6 +92,9 @@
                             <br>
                             <input class="input_register"  id = "user_study" list="browsers3" name="user_study">
                             <datalist id="browsers3">
+                                 <% while (rs2.next()) {%> 
+                                <option ><%=rs2.getString(1)%></option>
+                                <% }%>
                             </datalist>
                         </div>
                         <div>
@@ -149,7 +156,7 @@
                             <input type="text" name="universidad">
                         </div>
                         <br>
-                        <input class="btnred" type="submit" value="Crear nueva Área"/>
+                        <input class="btnred" type="submit" value="Crear Universidad"/>
                     </form>
                     <div class="container-extra"><br><br></div>
                 </div>
@@ -159,7 +166,7 @@
 
                 <div id="Formato" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"></div>
-                    <form action = "addVendor.jsp">
+                    <form action = "addEstructura.jsp">
                         <h3>Crear Formato</h3>
                         <!--*********************  Table start  *********************-->
                         <div class="col-md-4">
@@ -182,13 +189,16 @@
                             <br>
                             <label class="left">Año </label>
                             <br>
-                            <input class="input_register"  id = "año"  type="number" name="año" min="2017" max="2022">
+                            <input class="input_register"  id = "anio"  type="number" name="anio" min="2017" max="2022">
                             <br>
                             <label class="lb2">Universidad</label>
                             <br>
-                            <input class="input_register"  id = "Universidad" list="browsers5" name="Universidad">
-                            <datalist id="browsers5">
-
+                           <input class="input_register"  id = "estructura_uni" list="browsers4" name="estructura_uni">
+                            
+                            <datalist id="browsers4">
+                                <% while (rs1.next()) {%> 
+                                <option ><%=rs1.getString(1)%></option>
+                                <% }%>
                             </datalist>
 
                         </div>
