@@ -25,13 +25,13 @@
                     String insert = request.getParameter("carrera");
                     String insert2 ="";
                     db.query.execute("SELECT Id_Universidad   " 
-                    + "FROM  Universidad WHERE Nombre ='"+request.getParameter("user_study")+"';");
+                    + "FROM  Universidad WHERE Nombre ='"+request.getParameter("carrera_uni")+"';");
                     ResultSet rs1 = db.query.getResultSet();
                     while(rs1.next()){
                        insert2 = rs1.getString(1);
                     }
                    if (request.getParameter("carrera") != null && insert2 != "") {
-                    contador = db.query.executeUpdate("INSERT INTO Carrera (Password,Rol,Id_Universidad) VALUES ('" + insert + "',"+insert2+" );");
+                    contador = db.query.executeUpdate("INSERT INTO Carrera (Nombre,Id_Universidad) VALUES ('" + insert + "',"+insert2+" );");
 
                     }
 
@@ -42,7 +42,7 @@
             }
             if (contador == 1) {
 
-                JOptionPane.showMessageDialog(null, "Área ingresado exitosamente");
+                JOptionPane.showMessageDialog(null, "Carrera ingresado exitosamente");
             } else {
 
                 JOptionPane.showMessageDialog(null, "Ha occurido un error");

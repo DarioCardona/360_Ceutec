@@ -55,9 +55,9 @@
                     if (userType == 0) {
                         request.getRequestDispatcher("CreateSU.jsp").forward(request, response);
                     } else if (userType == 1) {
-                        request.getRequestDispatcher("t2.jsp").forward(request, response);
-                    } else if (userType == 2) {
-                        request.getRequestDispatcher("t3.jsp").forward(request, response);
+                        request.getRequestDispatcher("tablaJefe.jsp").forward(request, response);
+                    } else if (userType == 2) {                     
+                        request.getRequestDispatcher("tablaCarrera.jsp").forward(request, response);
                     } else  if (userType == 3) {
                         request.getRequestDispatcher("tablaUsuario.jsp").forward(request, response);
                     } else{

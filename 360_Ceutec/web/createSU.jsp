@@ -55,7 +55,7 @@
         <div>
 
             <div class="tab mynav col-md-12">
-                <form class="nospace" action="backMain.jsp ">
+                <form class="nospace" action="sessionOut.jsp ">
                     <input class="col-md-1 btnred left tablinks" type="submit" value="Regresar"/>
                 </form>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Usuario')">Usuario</button>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tablaUsuario
-    Created on : 11-04-2017, 12:54:34 PM
+    Document   : tablaJefe
+    Created on : 11-12-2017, 09:48:29 AM
     Author     : Darío Cardona
 --%>
 
@@ -31,13 +31,15 @@
             }*/
             DatabaseConnection db = new DatabaseConnection(application.getRealPath(""));
             db.connect();
-            db.query.execute("SELECT DISTINCT Id_Estructura FROM Registros Where Id_Usuario = " + session.getAttribute("session_usuario") + ";");
+            db.query.execute("SELECT DISTINCT Id_Estructura FROM Registros r "
+                    + "inner join Carrera c  on r.Id_Carrera = c.Id_Carrera "
+                    + "WHERE c.Id_Universidad = " + session.getAttribute("session_universidad") + ";");
             ResultSet rs = db.query.getResultSet();
             ResultSet rs1;
             ResultSet rs2;
             while (rs.next()) {
                 db.query.execute("SELECT Id_Usuario, Nombre_Usuario, Valoracion_Global, Seccion, Materia, Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7,Indicador_8,Indicador_9,Indicador_10  "
-                        + "FROM Registros Where Id_Estructura = " + rs.getString(1) + " AND Id_Usuario = " + session.getAttribute("session_usuario") + ";");
+                        + "FROM Registros Where Id_Estructura = " + rs.getString(1) + ";");
                 rs1 = db.query.getResultSet();
                 Registros.add(rs1);// agrego los registros
 
@@ -410,4 +412,5 @@
 </body>
 
 </html>
+
 
