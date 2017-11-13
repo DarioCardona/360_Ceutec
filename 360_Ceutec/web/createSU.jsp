@@ -47,7 +47,7 @@
             db.query.execute("SELECT Nombre   " // para el filtro de vendor
                     + "FROM  Universidad ");
             ResultSet rs1 = db.query.getResultSet();
-            
+
             db.query.execute("SELECT Nombre   " // para el filtro de vendor
                     + "FROM  Carrera ");
             ResultSet rs2 = db.query.getResultSet();
@@ -93,7 +93,7 @@
                             <br>
                             <input class="input_register"  id = "user_study" list="browsers3" name="user_study">
                             <datalist id="browsers3">
-                                 <% while (rs2.next()) {%> 
+                                <% while (rs2.next()) {%> 
                                 <option ><%=rs2.getString(1)%></option>
                                 <% }%>
                             </datalist>
@@ -108,7 +108,7 @@
                                 <option value="0">Administrador</option>    
                             </select>
                         </div>
-                        
+
                         <input class="btnred" type="submit" value="Agregar Usuario"/>
                     </form>
                     <div class="container-extra"></div>
@@ -131,14 +131,14 @@
                             <label class="lb2">Universidad</label>
                             <br>
                             <input class="input_register"  id = "carrera_uni" list="browsers4" name="carrera_uni">
-                            
+
                             <datalist id="browsers4">
                                 <% while (rs1.next()) {%> 
                                 <option ><%=rs1.getString(1)%></option>
                                 <% }%>
                             </datalist>
                         </div>
-                        
+
                         <input class="btnred" type="submit" value="Crear nueva Carrera"/>
                     </form>
                     <div class="container-extra"><br><br></div>
@@ -161,7 +161,7 @@
                     </form>
                     <div class="container-extra"><br><br></div>
                 </div>
-                           
+
                 <div id="Registros" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"><br><br></div>
                     <form id="regis" action = "addRegistros.jsp" >
@@ -169,15 +169,16 @@
                         <div class="space"></div>
                         <div>
                             <center>
-                            <input type="file" id="archivo" name="archivo" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv">
+                                <input type="file" id="archivo" name="archivo" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv">
                             </center>
                             <input type="hidden" id="path" name="path" >
                         </div>
                         <br>
-                         <button type="button" class="btnred" onclick="validar_archivo()"/>Agregar</button>
+                        <button type="button" class="btnred" onclick="validar_archivo()"/>Agregar</button>
                     </form>
                     <div class="container-extra"><br><br></div>
                 </div>
+
 
 
 
@@ -211,8 +212,8 @@
                             <br>
                             <label class="lb2">Universidad</label>
                             <br>
-                           <input class="input_register"  id = "estructura_uni" list="browsers4" name="estructura_uni">
-                            
+                            <input class="input_register"  id = "estructura_uni" list="browsers4" name="estructura_uni">
+
                             <datalist id="browsers4">
                                 <% while (rs1.next()) {%> 
                                 <option ><%=rs1.getString(1)%></option>
@@ -281,73 +282,75 @@
                         <br>
                         <br>
                         <br>
-                         <div class="container-extra">
-                          <div class="container-extra">
-                               <div class="container-extra"> <div class="container-extra">
-                                   
-                        <div class="col-md-12">  
-                            <center>
-                                <input class="btnred" type="submit" value="Crear nuevo Formato"/>
-                            </center>
-                        </div>   
-                    </form>
-                    <div class="container-extra"><br> <br></div>
-                </div>                
-            </div>
-        </div>
+                        <div class="container-extra">
+                            <div class="container-extra">
+                                <div class="container-extra"> <div class="container-extra">
 
-        <script>
-            document.getElementById("Usuario").style.display = "block";
-            opentab(event, 'Usuario');
-            function opentab(evt, cityName) {
-                //alert(evt);
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tabcontent");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
+                                        <div class="col-md-12">  
+                                            <center>
+                                                <input class="btnred" type="submit" value="Crear nuevo Formato"/>
+                                            </center>
+                                        </div>   
+                                        </form>
+                                        <div class="container-extra"><br> <br></div>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div> 
+                </div> 
+            </div> 
+            <script>
+                document.getElementById("Usuario").style.display = "block";
+                opentab(event, 'Usuario');
+                function opentab(evt, cityName) {
+                    //alert(evt);
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += "active";
                 }
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+                function validar_archivo() {
+
+                    if (document.getElementById("archivo").value != null && document.getElementById("archivo").value != "") {
+                        document.getElementById("path").value = document.getElementById("archivo").value;
+                        alert(document.getElementById("path").value)
+                        document.forms["regis"].submit();
+                    } else {
+                        alert("Seleccione un archivo por favor");
+                    }
                 }
-                document.getElementById(cityName).style.display = "block";
-                evt.currentTarget.className += "active";
-            }
 
-            function validar_archivo(){
-                
-                if (document.getElementById("archivo").value != null && document.getElementById("archivo").value !="") {
-                    document.getElementById("path").value = document.getElementById("archivo").value;
-                    alert(document.getElementById("path").value)
-                    document.forms["regis"].submit();
-                } else {
-                    alert ("Seleccione un archivo por favor");
-                }
-            }
+                function search_b() {
+                    var input, filter, table, tr, td, i;
+                    input = document.getElementById("Search");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("PerformanceTable");
+                    tr = table.getElementsByTagName("tr"),
+                            th = table.getElementsByTagName("th");
 
-            function search_b() {
-                var input, filter, table, tr, td, i;
-                input = document.getElementById("Search");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("PerformanceTable");
-                tr = table.getElementsByTagName("tr"),
-                        th = table.getElementsByTagName("th");
-
-                // Loop through all table rows, and hide those who don't match the        search query
-                for (i = 1; i < tr.length; i++) {
-                    tr[i].style.display = "none";
-                    for (var j = 0; j < th.length; j++) {
-                        td = tr[i].getElementsByTagName("td")[j];
-                        if (td) {
-                            if (td.innerHTML.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
-                                tr[i].style.display = "";
-                                break;
+                    // Loop through all table rows, and hide those who don't match the        search query
+                    for (i = 1; i < tr.length; i++) {
+                        tr[i].style.display = "none";
+                        for (var j = 0; j < th.length; j++) {
+                            td = tr[i].getElementsByTagName("td")[j];
+                            if (td) {
+                                if (td.innerHTML.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+                                    tr[i].style.display = "";
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-            }
-        </script>
+            </script>
     </body>
 </html>
 

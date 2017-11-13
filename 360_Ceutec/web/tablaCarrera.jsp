@@ -392,182 +392,187 @@
         </tbody>
     </table>
 
-    <form id="mi_form" action="sendMesaje.jsp" method="POST">
-        <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel"  >
-            <div class="modal-dialog" role="document" style="width:1250px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel"><%out.print("El ID de su Carrera es : " + session.getAttribute("session_universidad"));%></h3>
-                    </div>
-                    <div class="modal-body">
+<form id= "mi_form2" action="crearFormato.jsp" method="POST">
+    <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel"  >
+        <div class="modal-dialog" role="document" style="width:1250px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"><%out.print("El ID de su Carrera es : " + session.getAttribute("session_universidad"));%></h3>
+                </div>
+                <div class="modal-body">
 
-                        <table class="table table-bordered table-striped" >
-                            <tr>
-                                <th> ID </th>
-                                <th> Perido </th>
-                                <th> Modulo  </th>
-                                <th> Año </th>
-                                <th> Indicador 1 </th>
-                                <th>  Indicador 2  </th>
-                                <th> Indicador 3 </th>
-                                <th>  Indicador 4  </th>
-                                <th> Indicador 5 </th>
-                                <th>  Indicador 6  </th>
-                                <th> Indicador 7 </th>
-                                <th>  Indicador 8  </th>
-                                <th> Indicador 9 </th>
-                                <th>  Indicador 10  </th>
-                            </tr>
+                    <table class="table table-bordered table-striped" >
+                        <tr>
+                            <th> ID </th>
+                            <th> Perido </th>
+                            <th> Modulo  </th>
+                            <th> Año </th>
+                            <th> Indicador 1 </th>
+                            <th>  Indicador 2  </th>
+                            <th> Indicador 3 </th>
+                            <th>  Indicador 4  </th>
+                            <th> Indicador 5 </th>
+                            <th>  Indicador 6  </th>
+                            <th> Indicador 7 </th>
+                            <th>  Indicador 8  </th>
+                            <th> Indicador 9 </th>
+                            <th>  Indicador 10  </th>
+
+                        </tr>
+                        <%
+
+                            while (rs3.next()) {
+                        %>
+                        <tr>
                             <%
+                                String temp1 = " ";
+                                if (rs3.getString(1) == null) {
 
-                                while (rs3.next()) {
-                            %>
-                            <tr>
-                                <%
-                                    String temp1 = " ";
-                                    if (rs3.getString(1) == null) {
-
-                                    } else {
-                                        temp1 = rs3.getString(1);
-                                    }
-                                %> 
-                                <td>          <%=temp1%>        </td>
-
-                                <%
-                                    String temp2 = " ";
-                                    if (rs3.getString(2) == null) {
-
-                                    } else {
-                                        temp2 = rs3.getString(2);
-                                    }
-                                %> 
-                                <td>          <%=temp2%>        </td>
-                                <%
-                                    String temp3 = " ";
-                                    if (rs3.getString(3) == null) {
-
-                                    } else {
-                                        temp3 = rs3.getString(3);
-                                    }
-                                %> 
-                                <td>          <%=temp3%>        </td>
-                                <%
-                                    String temp4 = " ";
-                                    if (rs3.getString(4) == null) {
-
-                                    } else {
-                                        temp4 = rs3.getString(4);
-                                    }
-                                %> 
-                                <td>          <%=temp4%>        </td>
-                                <%
-                                    String temp5 = " ";
-                                    if (rs3.getString(5) == null) {
-
-                                    } else {
-                                        temp5 = rs3.getString(5);
-                                    }
-                                %> 
-                                <td>          <%=temp5%>        </td>
-
-
-                                <%
-                                    String temp6 = " ";
-                                    if (rs3.getString(6) == null) {
-
-                                    } else {
-                                        temp6 = rs3.getString(6);
-                                    }
-                                %> 
-                                <td>          <%=temp6%>        </td>
-                                <%
-                                    String temp7 = " ";
-                                    if (rs3.getString(7) == null) {
-
-                                    } else {
-                                        temp7 = rs3.getString(7);
-                                    }
-                                %> 
-                                <td>          <%=temp7%>        </td>
-                                <%
-                                    String temp8 = " ";
-                                    if (rs3.getString(8) == null) {
-
-                                    } else {
-                                        temp8 = rs3.getString(8);
-                                    }
-                                %> 
-                                <td>          <%=temp8%>        </td>
-                                <%
-                                    String temp9 = " ";
-                                    if (rs3.getString(9) == null) {
-
-                                    } else {
-                                        temp9 = rs3.getString(9);
-                                    }
-                                %> 
-                                <td>          <%=temp9%>        </td>
-                                <%
-                                    String temp10 = " ";
-                                    if (rs3.getString(10) == null) {
-
-                                    } else {
-                                        temp10 = rs3.getString(10);
-                                    }
-                                %> 
-                                <td>          <%=temp10%>        </td>
-                                <%
-                                    String temp11 = " ";
-                                    if (rs3.getString(11) == null) {
-
-                                    } else {
-                                        temp11 = rs3.getString(11);
-                                    }
-                                %> 
-                                <td>          <%=temp11%>        </td>
-                                <%
-                                    String temp12 = " ";
-                                    if (rs3.getString(12) == null) {
-
-                                    } else {
-                                        temp12 = rs3.getString(12);
-                                    }
-                                %> 
-                                <td>          <%=temp12%>        </td>
-                                <%
-                                    String temp13 = " ";
-                                    if (rs3.getString(13) == null) {
-
-                                    } else {
-                                        temp13 = rs3.getString(13);
-                                    }
-                                %> 
-                                <td>          <%=temp13%>        </td>
-                                <%
-                                    String temp14 = " ";
-                                    if (rs3.getString(14) == null) {
-
-                                    } else {
-                                        temp14 = rs3.getString(14);
-                                    }
-                                %> 
-                                <td>          <%=temp14%>        </td>
-                                
-                            </tr> 
-                            <% }
-
+                                } else {
+                                    temp1 = rs3.getString(1);
+                                }
                             %> 
-                        </table>
+                            <td class="estructura">         
+                                <%=temp1%>
+                                <div>
+                                    <button type="button" class=" add_item btngreen2 glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal_2" ></button>
+                                </div>
+                            </td>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                           
-                    </div>
+                            <%
+                                String temp2 = " ";
+                                if (rs3.getString(2) == null) {
+
+                                } else {
+                                    temp2 = rs3.getString(2);
+                                }
+                            %> 
+                            <td>          <%=temp2%>        </td>
+                            <%
+                                String temp3 = " ";
+                                if (rs3.getString(3) == null) {
+
+                                } else {
+                                    temp3 = rs3.getString(3);
+                                }
+                            %> 
+                            <td>          <%=temp3%>        </td>
+                            <%
+                                String temp4 = " ";
+                                if (rs3.getString(4) == null) {
+
+                                } else {
+                                    temp4 = rs3.getString(4);
+                                }
+                            %> 
+                            <td>          <%=temp4%>        </td>
+                            <%
+                                String temp5 = " ";
+                                if (rs3.getString(5) == null) {
+
+                                } else {
+                                    temp5 = rs3.getString(5);
+                                }
+                            %> 
+                            <td>          <%=temp5%>        </td>
+
+
+                            <%
+                                String temp6 = " ";
+                                if (rs3.getString(6) == null) {
+
+                                } else {
+                                    temp6 = rs3.getString(6);
+                                }
+                            %> 
+                            <td>          <%=temp6%>        </td>
+                            <%
+                                String temp7 = " ";
+                                if (rs3.getString(7) == null) {
+
+                                } else {
+                                    temp7 = rs3.getString(7);
+                                }
+                            %> 
+                            <td>          <%=temp7%>        </td>
+                            <%
+                                String temp8 = " ";
+                                if (rs3.getString(8) == null) {
+
+                                } else {
+                                    temp8 = rs3.getString(8);
+                                }
+                            %> 
+                            <td>          <%=temp8%>        </td>
+                            <%
+                                String temp9 = " ";
+                                if (rs3.getString(9) == null) {
+
+                                } else {
+                                    temp9 = rs3.getString(9);
+                                }
+                            %> 
+                            <td>          <%=temp9%>        </td>
+                            <%
+                                String temp10 = " ";
+                                if (rs3.getString(10) == null) {
+
+                                } else {
+                                    temp10 = rs3.getString(10);
+                                }
+                            %> 
+                            <td>          <%=temp10%>        </td>
+                            <%
+                                String temp11 = " ";
+                                if (rs3.getString(11) == null) {
+
+                                } else {
+                                    temp11 = rs3.getString(11);
+                                }
+                            %> 
+                            <td>          <%=temp11%>        </td>
+                            <%
+                                String temp12 = " ";
+                                if (rs3.getString(12) == null) {
+
+                                } else {
+                                    temp12 = rs3.getString(12);
+                                }
+                            %> 
+                            <td>          <%=temp12%>        </td>
+                            <%
+                                String temp13 = " ";
+                                if (rs3.getString(13) == null) {
+
+                                } else {
+                                    temp13 = rs3.getString(13);
+                                }
+                            %> 
+                            <td>          <%=temp13%>        </td>
+                            <%
+                                String temp14 = " ";
+                                if (rs3.getString(14) == null) {
+
+                                } else {
+                                    temp14 = rs3.getString(14);
+                                }
+                            %> 
+                            <td>          <%=temp14%>        </td>
+                        </tr> 
+                        <% }
+
+                        %> 
+                    </table>
+                    <input id = "id_e" type="hidden"  name="id_e" readonly="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                           
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+ </form>
 
 
     <%        //db.disconnect();
@@ -596,6 +601,19 @@
                 }
             }
         }
+        
+        
+
+        $(".add_item").click(function () {
+            cantidad = 0;
+            var $row = $(this).closest("tr");    // Find the row
+            var text = Number($row.find(".estructura").text()); // Find the text
+            //alert(text);                    
+            document.getElementById("id_e").value = text;
+            document.forms["mi_form2"].submit();
+
+        });
+
     </script>
 </body>
 

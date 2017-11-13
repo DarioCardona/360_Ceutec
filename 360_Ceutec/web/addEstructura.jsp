@@ -141,7 +141,16 @@
                     JOptionPane.showMessageDialog(null,"Ha occurido un error"+error);
                 }
             // request.getRequestDispatcher("addRegister.jsp").forward(request, response); 
-            request.getRequestDispatcher("createSU.jsp").forward(request, response);
+            
+            if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 0) {
+                        request.getRequestDispatcher("CreateSU.jsp").forward(request, response);
+                    } else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 1) {
+                        request.getRequestDispatcher("tablaJefe.jsp").forward(request, response);
+                    } else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 2) {                     
+                        request.getRequestDispatcher("tablaCarrera.jsp").forward(request, response);
+                    } else  if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 3) {
+                        request.getRequestDispatcher("tablaUsuario.jsp").forward(request, response);
+                    }
 
         %>    
     </body>
