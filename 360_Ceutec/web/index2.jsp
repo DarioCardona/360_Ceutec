@@ -18,8 +18,9 @@
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
+    <script src="md5.js"></script> 
     <body class="redbg">
-        <form class="myform centered" action="cambiarPass.jsp" method="POST">
+        <form id= "mi_form" class="myform centered" action="cambiarPass.jsp" method="POST">
             
             <img src="ceutec.jpg" width="300px">
             <h1>Cambiar Contraseña</h1>
@@ -35,9 +36,21 @@
             <br>
             <input type="password" name="pass3" id="pass3"/>
             <br><br>
-            <input class="btnred" type="submit" value="Cambiar Contraseña"  />
+            <button class="btnred"   onclick="cifrar()"> Cambiar Contraseña </button>
             
         </form>
-      
+      <script>
+            function cifrar(){
+                 var pass1 = document.getElementById("pass1").value;
+                 document.getElementById("pass1").value = hex_md5(pass1);
+                 var pass2 = document.getElementById("pass2").value;
+                 document.getElementById("pass2").value = hex_md5(pass2);
+                 var pass3 = document.getElementById("pass3").value;
+                 document.getElementById("pass3").value = hex_md5(pass3);
+                // alert(document.getElementById("pass").value);
+                document.forms["mi_form"].submit();
+            }
+           
+        </script>
     </body>
 </html>

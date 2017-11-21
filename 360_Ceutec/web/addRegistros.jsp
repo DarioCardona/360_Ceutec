@@ -3,6 +3,8 @@
     Created on : 11-07-2017, 09:25:07 AM
     Author     : Darío Cardona
 --%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.nio.file.Paths"%>
 <%@page import="java.io.File"%>
 <%@page import=" java.io.FileInputStream"%>
 <%@page import=" java.io.IOException"%>
@@ -28,6 +30,17 @@
             String temp2 = request.getParameter("archivo");
             out.print(temp2);
             
+           
+            String description = request.getParameter("description"); // Retrieves <input type="text" name="description">
+            Part filePart = request.getPart("archivo"); // Retrieves <input type="file" name="file">
+            //String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+            //InputStream fileContent = filePart.getInputStream();
+            
+            out.print(filePart +" part");
+            //out.print(fileName +" file name ");
+    // ... (do your job here)
+
+            /*
             String excelFilePath = application.getRealPath("")+temp2;
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
          
@@ -58,7 +71,7 @@
         }
          
         workbook.close();
-        inputStream.close();
+        inputStream.close();*/
 
         %>    
     </body>

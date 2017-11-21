@@ -16,10 +16,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>360 CEUTEC </title>
+        <title>360 CEUTEC</title>
+
+
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">

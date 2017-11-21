@@ -6,6 +6,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="DB.DatabaseConnection"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,6 +38,7 @@
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
+    <script src="md5.js"></script>  
     <body class="redbg">
         <%
             /*if (session.getAttribute("session_user") == null) {
@@ -73,7 +75,7 @@
 
                 <div id="Usuario" class="myform2 tabcontent centered tab-pane  tab-content"> 
                     <div class="container-extra"></div>
-                    <form action = "addUsuario.jsp">
+                    <form id="mi_form" action = "addUsuario.jsp">
                         <h3>Crear Usuario</h3>
                         <br>
                         <div class="space"></div>
@@ -86,7 +88,7 @@
                         <div>
                             <label for="password">Contraseña</label>
                             <br>
-                            <input type="password" name="password">
+                            <input type="password" name="password" id="pass">
                         </div>
                         <div>
                             <label class="lb2">Carrera</label>
@@ -109,7 +111,7 @@
                             </select>
                         </div>
 
-                        <input class="btnred" type="submit" value="Agregar Usuario"/>
+                            <button class="btnred"   onclick="cifrar()"> Agregar Usuario </button> 
                     </form>
                     <div class="container-extra"></div>
                 </div>
@@ -164,12 +166,12 @@
 
                 <div id="Registros" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"><br><br></div>
-                    <form id="regis" action = "addRegistros.jsp" >
+                    <form id="regis" action="upload" method="POST" enctype="MULTIPART/FORM-DATA"  >
                         <h3>Agregar Registros</h3>
                         <div class="space"></div>
                         <div>
                             <center>
-                                <input type="file" id="archivo" name="archivo" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv">
+                                <input type="file" id="archivo" name="archivo" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv" value="" />
                             </center>
                             <input type="hidden" id="path" name="path" >
                         </div>
@@ -350,6 +352,15 @@
                         }
                     }
                 }
+                
+                
+         function cifrar(){
+                 var pass = document.getElementById("pass").value;
+                 document.getElementById("pass").value = hex_md5(pass);
+                // alert(document.getElementById("pass").value);
+                alert( document.getElementById("pass").value);
+                document.forms["mi_form"].submit();
+            }
             </script>
     </body>
 </html>

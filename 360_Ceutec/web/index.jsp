@@ -18,8 +18,9 @@
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
+    <script src="md5.js"></script>  
     <body class="redbg">
-        <form class="myform centered" action="auth.jsp" method="POST">
+        <form id= "mi_form" class="myform centered" action="auth.jsp" method="POST">
             <div class="container-extra"></div>
             <img src="ceutec.jpg" width="300px">
             <h1>Iniciar sesión</h1>
@@ -31,10 +32,18 @@
             <br>
             <input type="password" name="pass" id="pass"/>
             <br><br>
-            <input class="btnred" type="submit" value="Iniciar sesión"  />
+            <button class="btnred"   onclick="cifrar()">Iniciar sesión </button>
             <div class="container-extra"></div>
         </form>
-      
+        <script>
+            function cifrar(){
+                 var pass = document.getElementById("pass").value;
+                 document.getElementById("pass").value = hex_md5(pass);
+                // alert(document.getElementById("pass").value);
+                document.forms["mi_form"].submit();
+            }
+           
+        </script>
     </body>
 </html>
 
