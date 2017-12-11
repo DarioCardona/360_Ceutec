@@ -53,7 +53,7 @@
                        request.getRequestDispatcher("index2.jsp").forward(request, response); 
                     } 
                     if (userType == 0) {
-                        request.getRequestDispatcher("CreateSU.jsp").forward(request, response);
+                        request.getRequestDispatcher("createSU.jsp").forward(request, response);
                     } else if (userType == 1) {
                         request.getRequestDispatcher("tablaJefe.jsp").forward(request, response);
                     } else if (userType == 2) {                     
@@ -65,8 +65,8 @@
                     }
                 } else {
                     //out.print("<script>alert('No se encuentra el usuario')</script>");
-                    JOptionPane.showMessageDialog(null, "No se encuentra el usuario" );
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    //JOptionPane.showMessageDialog(null, "No se encuentra el usuario" );
+                    request.getRequestDispatcher("index.jsp?msj=No se encuentra el usuario").forward(request, response);
                 }
                 db.disconnect();
             } catch (Exception e) {

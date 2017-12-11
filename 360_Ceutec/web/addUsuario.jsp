@@ -40,14 +40,14 @@
                 e.printStackTrace();
             }
             if (contador == 1) {
-
-                JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
+                 request.getRequestDispatcher("createSU.jsp?msj=Usuario ingresado exitosamente").forward(request, response);
+                //JOptionPane.showMessageDialog(null, "");
             } else {
-
-                JOptionPane.showMessageDialog(null, "Ha occurido un error");
+                 request.getRequestDispatcher("createSU.jsp?msj=Ha occurido un error").forward(request, response);
+                //JOptionPane.showMessageDialog(null, "Ha occurido un error");
             }
             //request.getRequestDispatcher("create.jsp").forward(request, response);
-            request.getRequestDispatcher("createSU.jsp").forward(request, response);
+           
         %>
     </body>
 </html>

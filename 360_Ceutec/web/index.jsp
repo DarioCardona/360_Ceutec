@@ -19,6 +19,14 @@
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <script src="md5.js"></script>  
+    <% if (request.getParameter("msj")!= null) { %>
+    <body> 
+        <script>
+             alert(" <% out.print(request.getParameter("msj") ); %> " );
+        </script>    
+    </body>    
+      
+    <% }  %>
     <body class="redbg">
         <form id= "mi_form" class="myform centered" action="auth.jsp" method="POST">
             <div class="container-extra"></div>

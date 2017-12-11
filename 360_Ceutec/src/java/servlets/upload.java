@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.swing.JOptionPane;
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -49,18 +50,19 @@ public class upload extends HttpServlet {
             for (Part part : request.getParts()) {
                 if (part.getContentType() != null) { //es archivo
                     //contexto local
-                    ubicacion = escribe_archivo(part);
+                    /* ubicacion = escribe_archivo(part);
                     tipo = part.getContentType();
                     nombre = (new File(ubicacion)).getName();
                     url = this.getServletContext().getContextPath() + "/" + nombre;
-                    contexto = "local";
+                    contexto = "local";*/
 
                     //contexto fuera                    
-                    /*ubicacion=escribe_archivo_fuera_c(part,"c:/Archivos/");
-                    tipo = part.getContentType();   
-                    nombre= (new File(ubicacion)).getName();
-                    url = "/download?archivo="+nombre+"";
-                    contexto="fuera";*/
+                    ubicacion = escribe_archivo_fuera_c(part, "c:/Archivo360/");
+                    tipo = part.getContentType();
+                    nombre = (new File(ubicacion)).getName();
+                    url = "/download?archivo=" + nombre + "";
+                    contexto = "fuera";
+
                 } else {
                     //otros objetos
                     Scanner sc = new Scanner(part.getInputStream());
@@ -69,55 +71,59 @@ public class upload extends HttpServlet {
                     }
                 }
             }//FIN FOR
-            //out.println("nombre" + nombre);
-            out.println("ubicacion" + ubicacion);
-            leer_excel(ubicacion);
-           // out.println("url" + url);
-            //out.println("tipo" + tipo);
-            //Guardar en la base de datos
-            //guarda_db(nombre, alterno, ubicacion, url, tipo, contexto);
+
+            //out.println("ubicacion " + ubicacion);
+            String x = leer_excel(ubicacion);
+            //out.println("x  ya   " + x);
+            
 
             //redireccionar a Listar
-            //request.getRequestDispatcher("createSU.jsp").forward(request, response);
-
+            request.getRequestDispatcher("createSU.jsp?msj=Reagistros Ingresados exitosamente").forward(request, response);
         }//FIN TRY
     }
-    
-    public void leer_excel (String path) throws FileNotFoundException, IOException{
-      InputStream ExcelFileToRead = new FileInputStream(path);
-        XSSFWorkbook  wb = new XSSFWorkbook(ExcelFileToRead);
 
-        XSSFWorkbook test = new XSSFWorkbook(); 
+    private String leer_excel(String path) throws FileNotFoundException, IOException {
+        String s = "";
+        InputStream ExcelFileToRead = new FileInputStream(path);
+
+        XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
+
+        XSSFWorkbook test = new XSSFWorkbook();
 
         XSSFSheet sheet = wb.getSheetAt(0);
-        XSSFRow row; 
+        XSSFRow row;
         XSSFCell cell;
 
         Iterator rows = sheet.rowIterator();
-
-        while (rows.hasNext())
-        {
-            row=(XSSFRow) rows.next();
+        int mi_cont = 0;
+        while (rows.hasNext()) {
+            mi_cont = 0;
+            row = (XSSFRow) rows.next();
             Iterator cells = row.cellIterator();
-            while (cells.hasNext())
-            {
-                cell=(XSSFCell) cells.next();
+            while (cells.hasNext()) {
+                cell = (XSSFCell) cells.next();
 
-                if (cell.getCellType() == XSSFCell.CELL_TYPE_STRING)
-                {
-                    out.print(cell.getStringCellValue()+" ");
-                }
-                else if(cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC)
-                {
-                    out.print(cell.getNumericCellValue()+" ");
-                }
-                else
-                {
+                if (cell.getCellType() == XSSFCell.CELL_TYPE_STRING) {
+
+                    s += ",'" + cell.getStringCellValue() + "'";
+                    mi_cont++;
+                } else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
+                    if (mi_cont == 0) {
+                        s += (int) cell.getNumericCellValue();
+                        mi_cont++;
+                    } else {
+                        s += "," + (int) cell.getNumericCellValue();
+                        mi_cont++;
+                    }
+
+                } else {
                     //U Can Handel Boolean, Formula, Errors
                 }
             }
-            System.out.println();
+            guarda_db(s, mi_cont);
+            s = "";
         }
+        return s;
     }
 
     private String escribe_archivo(Part p) throws IOException {
@@ -134,23 +140,62 @@ public class upload extends HttpServlet {
         return path + nombre;
     }
 
-    /*private void guarda_db(String nombre, String alterno, String ubicacion, String url, String tipo, String contexto) {
+    private void guarda_db(String datos, int tamaño) {
+        //JOptionPane.showMessageDialog(null, "tamaño: " + tamaño);
+        String estructura = "Id_Usuario,Nombre_Usuario,Valoracion_Global,Seccion,Materia,Id_Carrera,Id_Estructura,";
+        //estructura+= "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7,Indicador_8,";
+        // estructura+= "Indicador_9,Indicador_10";
+        switch (tamaño) {
+            case 8:
+                estructura += "Indicador_1";
+                break;
+            case 9:
+                estructura += "Indicador_1,Indicador_2";
+                break;
+            case 10:
+                estructura += "Indicador_1,Indicador_2,Indicador_3";
+                break;
+            case 11:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4";
+                break;
+            case 12:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5";
+                break;
+            case 13:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6";
+                break;
+            case 14:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7";
+                ;
+                break;
+            case 15:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7,Indicador_8";
+                break;
+            case 16:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7,Indicador_8,Indicador_9";
+                break;
+            case 17:
+                estructura += "Indicador_1,Indicador_2,Indicador_3,Indicador_4,Indicador_5,Indicador_6,Indicador_7,Indicador_8,Indicador_9,Indicador_10";
+                break;
+
+            default:
+                break;
+        }
+        //JOptionPane.showMessageDialog(null, "tamaño: " + tamaño + " datos: " + estructura);
+
         try {
-            Dba db = new Dba(this.getServletContext().getRealPath("") + "/WEB-INF/base.mdb");
-            db.conectar();
-            int contador = db.query.executeUpdate("insert into archivos (nombre, alterno, ubicacion, url, tipo, contexto) "
-                    + "values('" + nombre + "'"
-                    + ",'" + alterno + "'"
-                    + ",'" + ubicacion + "'"
-                    + ",'" + url + "'"
-                    + ",'" + tipo + "'"
-                    + ",'" + contexto + "')");
+            DatabaseConnection db = new DatabaseConnection(this.getServletContext().getRealPath(""));
+            db.connect();
+            db.query.executeUpdate("INSERT INTO Registros (" + estructura + ") VALUES (" + datos + " );");
             db.commit();
-            db.desconectar();
+            db.disconnect();
+            
         } catch (SQLException e) {
         }
+        
+        //JOptionPane.showMessageDialog(null, "tamaño: " + datos + "\n datos: " + estructura);
 
-    }*/
+    }
 
     private String escribe_archivo_fuera_c(Part p, String ubicacion) throws IOException {
         String nombre = "";

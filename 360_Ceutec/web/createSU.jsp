@@ -38,7 +38,15 @@
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
-    <script src="md5.js"></script>  
+    <script src="md5.js"></script> 
+    <% if (request.getParameter("msj")!= null) { %>
+    <body> 
+        <script>
+             alert(" <% out.print(request.getParameter("msj") ); %> " );
+        </script>    
+    </body>    
+      
+    <% }  %>
     <body class="redbg">
         <%
             /*if (session.getAttribute("session_user") == null) {
@@ -62,7 +70,7 @@
                 </form>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Usuario')">Usuario</button>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Carrera')">Carrera</button>
-                <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Universidad')">Universidad</button>
+                <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Universidad')">Campus</button>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Formato')">Formato</button>
                 <button class="col-md-1 left btnred2 tablinks" onclick="opentab(event, 'Registros')">Registros</button>
 
@@ -130,7 +138,7 @@
                             <input type="text" name="carrera">
                         </div>
                         <div>
-                            <label class="lb2">Universidad</label>
+                            <label class="lb2">Campus</label>
                             <br>
                             <input class="input_register"  id = "carrera_uni" list="browsers4" name="carrera_uni">
 
@@ -151,15 +159,15 @@
                 <div id="Universidad" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"><br><br></div>
                     <form action = "addUniversidad.jsp">
-                        <h3>Crear Univeridad</h3>
+                        <h3>Crear Campus</h3>
                         <div class="space"></div>
                         <div>
-                            <label for="warehouseName">Nombre de la Univeridad</label>
+                            <label for="warehouseName">Nombre del Campus</label>
                             <br>
                             <input type="text" name="universidad">
                         </div>
                         <br>
-                        <input class="btnred" type="submit" value="Crear Universidad"/>
+                        <input class="btnred" type="submit" value="Crear Campus"/>
                     </form>
                     <div class="container-extra"><br><br></div>
                 </div>
@@ -212,7 +220,7 @@
                             <br>
                             <input class="input_register"  id = "anio"  type="number" name="anio" min="2017" max="2022">
                             <br>
-                            <label class="lb2">Universidad</label>
+                            <label class="lb2">Campus</label>
                             <br>
                             <input class="input_register"  id = "estructura_uni" list="browsers4" name="estructura_uni">
 
@@ -358,7 +366,7 @@
                  var pass = document.getElementById("pass").value;
                  document.getElementById("pass").value = hex_md5(pass);
                 // alert(document.getElementById("pass").value);
-                alert( document.getElementById("pass").value);
+                //alert( document.getElementById("pass").value);
                 document.forms["mi_form"].submit();
             }
             </script>

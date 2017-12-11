@@ -26,6 +26,14 @@
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
+    <% if (request.getParameter("msj")!= null) { %>
+    <body> 
+        <script>
+             alert(" <% out.print(request.getParameter("msj") ); %> " );
+        </script>    
+    </body>    
+      
+    <% }  %>
     <body>
         <%
             ArrayList<ResultSet> Estructuras = new ArrayList();
@@ -439,6 +447,9 @@
                                 <div>
                                     <button type="button" class=" add_item btngreen2 glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal_2" ></button>
                                 </div>
+                                <div>
+                                    <button type="button" class=" send_mail btnblue3 glyphicon glyphicon-envelope" ></button>
+                                </div>
                             </td>
 
                             <%
@@ -574,6 +585,9 @@
         </div>
     </div>
  </form>
+ <form id="send" action="send.jsp" method="POST">
+        <input id = "id_send" type="hidden"  name="id_send" readonly=""> 
+</form>
 
 
     <%        //db.disconnect();
@@ -612,6 +626,16 @@
             //alert(text);                    
             document.getElementById("id_e").value = text;
             document.forms["mi_form2"].submit();
+
+        });
+        
+        $(".send_mail").click(function () {
+            cantidad = 0;
+            var $row = $(this).closest("tr");    // Find the row
+            var text = Number($row.find(".estructura").text()); // Find the text
+            //alert(text);                    
+            document.getElementById("id_send").value = text;
+            document.forms["send"].submit();
 
         });
 

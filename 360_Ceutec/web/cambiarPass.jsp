@@ -23,21 +23,21 @@
                                 
                                 if (contador == 1) {
 
-                                    JOptionPane.showMessageDialog(null, "Se a cambiado la contraseña exitosamente");
-                                     //request.getRequestDispatcher("create.jsp").forward(request, response);
+                                    //JOptionPane.showMessageDialog(null, "Se a cambiado la contraseña exitosamente");
+                                     request.getRequestDispatcher("index.jsp?msj=Se a cambiado la contraseña exitosamente").forward(request, response);
                                 } else {
                                     
-                                    JOptionPane.showMessageDialog(null, "Ha occurido un error");
-                                     request.getRequestDispatcher("index2.jsp").forward(request, response);
+                                    //JOptionPane.showMessageDialog(null, "Ha occurido un error");
+                                     request.getRequestDispatcher("index2.jsp?msj=Ha occurido un error").forward(request, response);
                                 }
                                
                             } else {
-                            JOptionPane.showMessageDialog(null, "La contraseña nueva no concuerda" );
-                             request.getRequestDispatcher("index2.jsp").forward(request, response);
+                            //JOptionPane.showMessageDialog(null, "La contraseña nueva no concuerda" );
+                             request.getRequestDispatcher("index2.jsp?msj=La contraseña nueva no concuerda").forward(request, response);
                         }
                 } else {
-                     JOptionPane.showMessageDialog(null, "La contraseña anterior no concuerda" );
-                     request.getRequestDispatcher("index2.jsp").forward(request, response);
+                     //JOptionPane.showMessageDialog(null, "La contraseña anterior no concuerda" );
+                     request.getRequestDispatcher("index2.jsp?msj=La contraseña anterior no concuerda").forward(request, response);
                 }
                 
                 
