@@ -118,6 +118,11 @@
                                 <option value="0">Administrador</option>    
                             </select>
                         </div>
+                            <div>
+                            <label for="mail">Correo</label>
+                            <br>
+                            <input type="text" name="mail" id="mail">
+                        </div>
 
                             <button class="btnred"   onclick="cifrar()"> Agregar Usuario </button> 
                     </form>

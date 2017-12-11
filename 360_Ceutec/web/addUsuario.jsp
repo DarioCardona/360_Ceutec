@@ -29,9 +29,8 @@
                     while(rs1.next()){
                        insert2 = rs1.getString(1);
                     }
-                   if (request.getParameter("password") != null && insert2 != "" && request.getParameter("username")!= null ) {
-                    contador = db.query.executeUpdate("INSERT INTO Usuario (Id_Usuario,Password,Rol,Id_Carrera) VALUES ("+ request.getParameter("username")+",'" + request.getParameter("password") + "',"+ request.getParameter("tipo_roll")+","+insert2+" );");
-
+                   if (request.getParameter("password") != null && insert2 != "" && request.getParameter("username")!= null && request.getParameter("mail")!= null  ) {
+                    contador = db.query.executeUpdate("INSERT INTO Usuario (Id_Usuario,Password,Rol,Id_Carrera,Correo) VALUES ("+ request.getParameter("username")+",'" + request.getParameter("password") + "',"+ request.getParameter("tipo_roll")+","+insert2+",'"+request.getParameter("mail")+"' );");
                     } 
 
                 db.commit();
