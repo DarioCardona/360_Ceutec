@@ -61,7 +61,7 @@
                                 </th>
                                 <th class="col-md-2 centered">
 
-                                    <p class="centered">Modulo</p>
+                                    <p class="centered">Semestre</p>
                                     <select id="modulo_select" name="modulo_select">
                                         <option value=""></option>
                                         <option value="1">1</option>
