@@ -12,7 +12,7 @@ package mpq;
 import javax.mail.PasswordAuthentication;
 public class autentificadorSMTP extends javax.mail.Authenticator {
      public PasswordAuthentication getPasswordAuthentication(){
-        return new PasswordAuthentication("huaweihsi2017@gmail.com","Honduras2017");
+        return new PasswordAuthentication("evaluacion.dc360@gmail.com","360ceutec2017");
        
     }
     

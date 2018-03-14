@@ -78,7 +78,7 @@ public class upload extends HttpServlet {
             
 
             //redireccionar a Listar
-            request.getRequestDispatcher("createSU.jsp?msj=Reagistros Ingresados exitosamente").forward(request, response);
+            request.getRequestDispatcher("createSU.jsp?msj=Registros Ingresados exitosamente").forward(request, response);
         }//FIN TRY
     }
 

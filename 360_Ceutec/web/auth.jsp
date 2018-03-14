@@ -55,11 +55,11 @@
                     if (userType == 0) {
                         request.getRequestDispatcher("createSU.jsp").forward(request, response);
                     } else if (userType == 1) {
-                        request.getRequestDispatcher("tablaJefe.jsp").forward(request, response);
+                        request.getRequestDispatcher("filtro_jefe.jsp").forward(request, response);
                     } else if (userType == 2) {                     
-                        request.getRequestDispatcher("tablaCarrera.jsp").forward(request, response);
+                        request.getRequestDispatcher("filtro_carrera.jsp").forward(request, response);
                     } else  if (userType == 3) {
-                        request.getRequestDispatcher("tablaUsuario.jsp").forward(request, response);
+                        request.getRequestDispatcher("filtro_docente.jsp").forward(request, response);
                     } else{
                         out.print("<script>alert('Tipo de usuario invalido')</script>");
                     }

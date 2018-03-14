@@ -24,12 +24,15 @@
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/sweetalert.css">
+        <link rel="icon" type="image/png" href="logo.png">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
+    <script src="styles/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     <% if (request.getParameter("msj")!= null) { %>
     <body> 
         <script>
-             alert(" <% out.print(request.getParameter("msj") ); %> " );
+             swal(" <% out.print(request.getParameter("msj") ); %> " );
         </script>    
     </body>    
       
@@ -43,9 +46,20 @@
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     
             }*/
+            
+            
             DatabaseConnection db = new DatabaseConnection(application.getRealPath(""));
             db.connect();
-            db.query.execute("SELECT DISTINCT Id_Estructura FROM Registros WHERE Id_Carrera = " + session.getAttribute("session_carrera") + ";");
+            String where = "";
+            String temp = request.getParameter("balala");
+
+            if (temp != null && temp != "") {
+                where += " AND " + temp;
+            } 
+            //out.print(where);
+            db.query.execute("SELECT DISTINCT Id_Estructura FROM Registros r "
+                    + "inner join Estructura e  on r.Id_Estructura = e.Id_Estructura "
+                    + " WHERE Id_Carrera = " + session.getAttribute("session_carrera")+ where + ";");
             ResultSet rs = db.query.getResultSet();
             ResultSet rs1;
             ResultSet rs2;
@@ -69,7 +83,7 @@
 
     <center>
         <div class="col-md-1 space2">
-            <form action="sessionOut.jsp ">
+            <form action="filtro_carrera.jsp ">
                 <input  class="btnred" type="submit" value="Regresar"  />
             </form>
 
@@ -81,7 +95,7 @@
             </div> 
         </div>
         <div class="col-md-9">
-            <h2>Evaluacion Docente</h2> 
+            <h2>Evaluación Docente</h2> 
             <input type="text" id="Search" onkeyup="search_b()" placeholder="Buscar en la tabla .." title="Type in a name" size="50">
         </div>
 
@@ -112,7 +126,7 @@
 
                 <th><p>Periodo </p></th>
 
-                <th><p>Modulo  </p></th>
+                <th><p>Semestre  </p></th>
 
                 <%                    String temp4 = " ";
                     if (rs2.getString(4) == null) {
@@ -407,7 +421,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><%out.print("El ID de su Carrera es : " + session.getAttribute("session_universidad"));%></h3>
+                    <h3 class="modal-title" id="myModalLabel"><%out.print("El ID de su Carrera es : " + session.getAttribute("session_carrera"));%></h3>
                 </div>
                 <div class="modal-body">
 
@@ -415,7 +429,7 @@
                         <tr>
                             <th> ID </th>
                             <th> Perido </th>
-                            <th> Modulo  </th>
+                            <th> Semestre  </th>
                             <th> Año </th>
                             <th> Indicador 1 </th>
                             <th>  Indicador 2  </th>
@@ -448,7 +462,7 @@
                                     <button type="button" class=" add_item btngreen2 glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal_2" ></button>
                                 </div>
                                 <div>
-                                    <button type="button" class=" send_mail btnblue3 glyphicon glyphicon-envelope" ></button>
+                                    <button type="button" class=" send_mail btnblue3 glyphicon glyphicon-envelope" data-toggle="modal" data-target="#myModal1" ></button>
                                 </div>
                             </td>
 
@@ -585,10 +599,28 @@
         </div>
     </div>
  </form>
- <form id="send" action="send.jsp" method="POST">
-        <input id = "id_send" type="hidden"  name="id_send" readonly=""> 
-</form>
+                   
+  <form id= "mi_form1" action="send.jsp" method="POST">
+    <div class="modal fade" id="myModal1"  role="dialog" aria-labelledby="myModalLabel"  >
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"> <center>Mensaje</center></h3>
+                </div>
+                <div class="modal-body">
 
+                   <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                    <input id = "id_send" type="hidden"  name="id_send" readonly=""> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+                    <button type="summit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ </form>
 
     <%        //db.disconnect();
 %>
@@ -635,7 +667,7 @@
             var text = Number($row.find(".estructura").text()); // Find the text
             //alert(text);                    
             document.getElementById("id_send").value = text;
-            document.forms["send"].submit();
+           // document.forms["send"].submit();
 
         });
 

@@ -23,6 +23,7 @@
 
                 
                     String insert = request.getParameter("carrera");
+                    String insert3 = request.getParameter("codigo");
                     String insert2 ="";
                     db.query.execute("SELECT Id_Universidad   " 
                     + "FROM  Universidad WHERE Nombre ='"+request.getParameter("carrera_uni")+"';");
@@ -31,8 +32,9 @@
                        insert2 = rs1.getString(1);
                     }
                    if (request.getParameter("carrera") != null && insert2 != "") {
-                    contador = db.query.executeUpdate("INSERT INTO Carrera (Nombre,Id_Universidad) VALUES ('" + insert + "',"+insert2+" );");
-
+                         if (request.getParameter("codigo") != null && insert3 != "") {
+                       contador = db.query.executeUpdate("INSERT INTO Carrera (Nombre,Id_Universidad,Id_Carrera) VALUES ('" + insert + "',"+insert2+","+insert3+");");
+                        }
                     }
 
                 db.commit();

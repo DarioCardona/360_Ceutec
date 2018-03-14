@@ -128,31 +128,26 @@
 
             }
 
-            
+            //out.print(contador);
+            //out.print(Integer.parseInt(session.getAttribute("session_rol").toString()));
             // request.getRequestDispatcher("addRegister.jsp").forward(request, response); 
 
             if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 0) {
                 if (contador == 1) {
-                    request.getRequestDispatcher("CreateSU.jsp?msj=Ingresado exitosamente").forward(request, response);
-                   // JOptionPane.showMessageDialog(null, "");
+                    request.getRequestDispatcher("createSU.jsp?msj=Ingresado exitosamente").forward(request, response);
+                  
                 } else {
-                    request.getRequestDispatcher("CreateSU.jsp?msj=Ha occurido un error").forward(request, response);
-                    //JOptionPane.showMessageDialog(null, "Ha occurido un error" + error);
+                    request.getRequestDispatcher("createSU.jsp?msj=Ha occurido un error").forward(request, response);
+                   
                 }
                 
-            } else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 1) {
-                request.getRequestDispatcher("tablaJefe.jsp").forward(request, response);
-            } else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 2) {
+            }  else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 2) {
                 if (contador == 1) {
                     request.getRequestDispatcher("tablaCarrera.jsp?msj=Ingresado exitosamente").forward(request, response);
-                   // JOptionPane.showMessageDialog(null, "");
                 } else {
                     request.getRequestDispatcher("tablaCarrera.jsp?msj=Ha occurido un error").forward(request, response);
-                    //JOptionPane.showMessageDialog(null, "Ha occurido un error" + error);
                 }
                 
-            } else if (Integer.parseInt(session.getAttribute("session_rol").toString()) == 3) {
-                request.getRequestDispatcher("tablaUsuario.jsp").forward(request, response);
             }
 
         %>    

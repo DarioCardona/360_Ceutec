@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+        <link rel="icon" type="image/png" href="logo.png">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>

@@ -12,8 +12,9 @@ package mpq;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
+
 public class EnviadorMail {
-    final String miCorreo = "huaweihsi2017@gmail.com";
+    final String miCorreo = "evaluacion.dc360@gmail.com";
     final String servidorSMTP = "smtp.gmail.com";
     final String puertoEnvio = "465";//465,587
     String mailReceptor = null;
@@ -38,7 +39,7 @@ public class EnviadorMail {
           Authenticator auth = new autentificadorSMTP();
           Session session = Session.getInstance(props, auth);
           MimeMessage msg = new MimeMessage(session);
-          msg.setText("El correo a sido enviado por medio del Sistema de Inventario");
+          msg.setText("El correo a sido enviado por medio del modulo de Evaluación Docente");
           msg.setSubject(asunto);
           msg.setFrom(new InternetAddress(miCorreo));
           Multipart multipart = new MimeMultipart();
@@ -56,6 +57,4 @@ public class EnviadorMail {
        }  
        
     }
-    
-    
 }

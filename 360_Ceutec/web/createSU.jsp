@@ -36,13 +36,16 @@
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+         <link rel="stylesheet" type="text/css" href="styles/sweetalert.css">
+         <link rel="icon" type="image/png" href="logo.png">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <script src="md5.js"></script> 
+     <script src="styles/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     <% if (request.getParameter("msj")!= null) { %>
-    <body> 
+    <body class="redbg"> 
         <script>
-             alert(" <% out.print(request.getParameter("msj") ); %> " );
+             swal(" <% out.print(request.getParameter("msj") ); %> " );
         </script>    
     </body>    
       
@@ -83,7 +86,7 @@
 
                 <div id="Usuario" class="myform2 tabcontent centered tab-pane  tab-content"> 
                     <div class="container-extra"></div>
-                    <form id="mi_form" action = "addUsuario.jsp">
+                    <form id="mi_form" action = "addUsuario.jsp" autocomplete="off">
                         <h3>Crear Usuario</h3>
                         <br>
                         <div class="space"></div>
@@ -134,13 +137,18 @@
 
                 <div id="Carrera" class="myform2 tabcontent centered tab-pane  tab-content">
                     <div class="container-extra"><br><br></div>
-                    <form action = "addCarrera.jsp">
+                    <form action = "addCarrera.jsp" autocomplete="off">
                         <h3>Crear Carrera</h3>
                         <div class="space"></div>
                         <div>
                             <label for="carrera">Nombre de la Carrera</label>
                             <br>
                             <input type="text" name="carrera">
+                        </div>
+                        <div>
+                            <label for="codigo carrera">Codigo de la Carrera</label>
+                            <br>
+                            <input type="text" name="codigo">
                         </div>
                         <div>
                             <label class="lb2">Campus</label>
@@ -163,7 +171,7 @@
 
                 <div id="Universidad" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"><br><br></div>
-                    <form action = "addUniversidad.jsp">
+                    <form action = "addUniversidad.jsp" autocomplete="off">
                         <h3>Crear Campus</h3>
                         <div class="space"></div>
                         <div>
@@ -179,7 +187,7 @@
 
                 <div id="Registros" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"><br><br></div>
-                    <form id="regis" action="upload" method="POST" enctype="MULTIPART/FORM-DATA"  >
+                    <form id="regis" action="upload" method="POST" enctype="MULTIPART/FORM-DATA" autocomplete="off" >
                         <h3>Agregar Registros</h3>
                         <div class="space"></div>
                         <div>
@@ -200,7 +208,7 @@
 
                 <div id="Formato" class="tabcontent myform2 centered tab-pane   tab-content">
                     <div class="container-extra"></div>
-                    <form action = "addEstructura.jsp">
+                    <form action = "addEstructura.jsp" autocomplete="off">
                         <h3>Crear Formato</h3>
                         <!--*********************  Table start  *********************-->
                         <div class="col-md-4">
@@ -213,7 +221,7 @@
                                 <option value="4">5</option>
                             </select>
                             <br>
-                            <label class="left">Modulo </label>
+                            <label class="left">Semestre </label>
                             <br>
                             <select class="sel" id="modulo_selector"  name="modulo_selector">
                                 <option value="1">1</option>
@@ -336,10 +344,10 @@
 
                     if (document.getElementById("archivo").value != null && document.getElementById("archivo").value != "") {
                         document.getElementById("path").value = document.getElementById("archivo").value;
-                        alert(document.getElementById("path").value)
+                       // alert(document.getElementById("path").value)
                         document.forms["regis"].submit();
                     } else {
-                        alert("Seleccione un archivo por favor");
+                        swal("Seleccione un archivo por favor");
                     }
                 }
 

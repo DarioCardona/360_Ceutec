@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+        <link rel="icon" type="image/png" href="logo.png">
         <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
@@ -31,9 +32,16 @@
             }*/
             DatabaseConnection db = new DatabaseConnection(application.getRealPath(""));
             db.connect();
+             String where = "";
+            String temp = request.getParameter("balala");
+
+            if (temp != null && temp != "") {
+                where += " AND " + temp;
+            } 
             db.query.execute("SELECT DISTINCT Id_Estructura FROM Registros r "
+                    + "inner join Estructura e  on r.Id_Estructura = e.Id_Estructura "
                     + "inner join Carrera c  on r.Id_Carrera = c.Id_Carrera "
-                    + "WHERE c.Id_Universidad = " + session.getAttribute("session_universidad") + ";");
+                    + "WHERE c.Id_Universidad = " + session.getAttribute("session_universidad") + where +";");
             ResultSet rs = db.query.getResultSet();
             ResultSet rs1;
             ResultSet rs2;
@@ -55,12 +63,12 @@
 
     <center>
         <div class="col-md-1 space2">
-            <form action="sessionOut.jsp ">
+            <form action="filtro_jefe.jsp ">
                 <input  class="btnred" type="submit" value="Regresar"  />
             </form>
         </div>
         <div class="col-md-10">
-            <h2>Evaluacion Docente</h2> 
+            <h2>Evaluación Docente</h2> 
             <input type="text" id="Search" onkeyup="search_b()" placeholder="Buscar en la tabla .." title="Type in a name" size="50">
         </div>
 
@@ -91,7 +99,7 @@
                     
                 <th><p>Periodo </p></th>
                     
-                <th><p>Modulo  </p></th>
+                <th><p>Semestre  </p></th>
 
                 <%
                     String temp4 = " ";
@@ -382,7 +390,7 @@
     </table>
 
     <%
-            //db.disconnect();
+            db.disconnect();
 %>
     <script>
 

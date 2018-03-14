@@ -3,6 +3,7 @@
     Created on : 12-07-2017, 03:06:43 PM
     Author     : Darío Cardona
 --%>
+<%@page import="mpq.EnviadorMail"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.ResultSet"%>
@@ -37,8 +38,7 @@
                         + "<html xmlns=\"http://www.w3.org/1999/xhtml\">"
                         + "<head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /> </head>"
                         + "<body>"
-                        + "<br><br>"
-                        + "<h3>Estimado se le adjunta la Evaluacion Docente <h3>"
+                        + "<p>"+ request.getParameter("comment")+ "<p>"
                         + "<table border=1 style=\"text-align: center;\">"
                         + "<tr>"
                         + "<th style=\"background-color:dimgray;color:white;border: 1px solid dimgray;\">TH</th>"
@@ -62,7 +62,7 @@
                 }
                 str += "</tr>";
             }
-            //out.print(str);
+            out.print(str);
             db.query.execute("SELECT DISTINCT Id_Usuario,u.correo "
                     + "FROM Registros r "
                     + "inner join Usuario u on r.Id_Usuario = u.Id_Usuario "
@@ -100,11 +100,14 @@
                 
             }
                 str2 += "</table>"
-                        + "<h3>Este mensaje a sido enviado mediante la plataforma de Evaluacion 360<h3>"
+                        + "<p>Este mensaje a sido enviado mediante la plataforma de Evaluacion 360<p>"
                         + "</body>"
                         + "</html>";
-                out.print(str2); // va envio de correo
+               // out.print(str2); // va envio de correo
+                 EnviadorMail EnviadorMail = new EnviadorMail(rs.getString(2).toString(), "Evaluación Docente" , str2); 
         }
+            
+         request.getRequestDispatcher("tablaCarrera.jsp?msj=Coreo enviado exitosamente").forward(request, response);
 
         %>
     </body>
